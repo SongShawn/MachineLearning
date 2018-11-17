@@ -123,9 +123,7 @@ class Robot(object):
         if self.learning:
             # TODO 8. When learning, update the q table according
             # to the given rules
-            QTable_next_state = 0
-            if self.state != next_state:
-                QTable_next_state = max(list(self.Qtable[next_state].values()))
+            QTable_next_state = max(list(self.Qtable[next_state].values()))
 
             self.Qtable[self.state][action] = (1 - self.alpha) * self.Qtable[self.state][action] + \
                 self.alpha * (r + self.gamma * QTable_next_state)

@@ -171,6 +171,7 @@ class Maze(object):
             # print(r,c)
             maze[r*grid_size:(r+1)*grid_size, c*grid_size:(c+1)*grid_size, :] += trap_img
         r,c = self.destination
+        # print('destination: ', r, c)
         maze[r*grid_size:(r+1)*grid_size, c*grid_size:(c+1)*grid_size, :] += dest_img
 
         # Final maze image
@@ -281,8 +282,8 @@ class Maze(object):
         f.close()
 
     def set_dest_and_traps(self, dest_file, traps_file):
-        self.destination = tuple(np.genfromtxt(dest_file, delimiter=','))
-        traps = np.genfromtxt(traps_file, delimiter=',')
+        self.destination = tuple(np.genfromtxt(dest_file, delimiter=',', dtype=np.uint16))
+        traps = np.genfromtxt(traps_file, delimiter=',', dtype=np.uint16)
         # print('set_dest_and_traps traps: ', traps)
         self.__traps = [tuple(i) for i in traps]
         # print(self.__traps)
