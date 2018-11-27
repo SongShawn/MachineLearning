@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- from: https://www.kaggle.com/mircat/violent-crime-mapping/output -->
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Mapping and Visualizing Violent Crime in San Francisco</title>
+
+<script src="output_files/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="output_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="output_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="output_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="output_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="output_files/highlight/default.css"
+      type="text/css" />
+<script src="output_files/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div id="header">
+<h1 class="title">Mapping and Visualizing Violent Crime in San Francisco</h1>
+</div>
+
+
+<div id="this-script-is-a-work-in-progress.-i-hope-to-add-more-to-it-as-i-think-up-new-ideas" class="section level4">
+<h4>This script is a work in progress. I hope to add more to it as I think up new ideas!</h4>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The San Francisco crime dataset provides a special opportunity to play with data visually. As a hobbyist photographer, I am a big fan of pretty pictures. Since the dataset covers a wide variety of crimes, visualizing them all at once might wash out any patterns contained in smaller subgroups. I have elected to see if there are any patterns within violent crime that can be explored visually.</p>
+</div>
+<div id="the-data" class="section level1">
+<h1>The Data</h1>
+<p>Columns include logitude and latitude, the category the crime is classified as,<br />and date and time. When we import the data, we extract the Year, Month, Day, and Hour as individual columns. This will allow us to break out our visualizations more easily into these dimensions.</p>
+<p>Lets look at all the crime categories to see which might fall under the umbrella of ‘Violent Crime’</p>
+<pre class="r"><code>library(dplyr)
+library(readr)
+library(lubridate)
+
+coltypes &lt;-
+    list(Dates = col_datetime(&quot;%Y-%m-%d %H:%M:%S&quot;))
+
+train &lt;-
+    read_csv(file=&quot;../input/train.csv&quot;,
+                  col_types=coltypes)
+test &lt;-
+    read_csv(file=&quot;../input/test.csv&quot;,
+                  col_types=coltypes) 
+
+train &lt;-
+    train %&gt;%
+    mutate(Year  = factor(year(Dates), levels=2003:2015),
+           Month = factor(month(Dates), levels=1:12),
+           Day   = day(Dates),
+           Hour  = factor(hour(Dates), levels=0:23),
+           dayDate = as.POSIXct(round(Dates, units = &quot;days&quot;)),
+           DayOfWeek = factor(DayOfWeek, levels=c(&quot;Monday&quot;,
+                                                  &quot;Tuesday&quot;,
+                                                  &quot;Wednesday&quot;,
+                                                  &quot;Thursday&quot;,
+                                                  &quot;Friday&quot;,
+                                                  &quot;Saturday&quot;,
+                                                  &quot;Sunday&quot;))
+           )
+           
+unique(train$Category)</code></pre>
+<pre><code>##  [1] &quot;WARRANTS&quot;                    &quot;OTHER OFFENSES&quot;             
+##  [3] &quot;LARCENY/THEFT&quot;               &quot;VEHICLE THEFT&quot;              
+##  [5] &quot;VANDALISM&quot;                   &quot;NON-CRIMINAL&quot;               
+##  [7] &quot;ROBBERY&quot;                     &quot;ASSAULT&quot;                    
+##  [9] &quot;WEAPON LAWS&quot;                 &quot;BURGLARY&quot;                   
+## [11] &quot;SUSPICIOUS OCC&quot;              &quot;DRUNKENNESS&quot;                
+## [13] &quot;FORGERY/COUNTERFEITING&quot;      &quot;DRUG/NARCOTIC&quot;              
+## [15] &quot;STOLEN PROPERTY&quot;             &quot;SECONDARY CODES&quot;            
+## [17] &quot;TRESPASS&quot;                    &quot;MISSING PERSON&quot;             
+## [19] &quot;FRAUD&quot;                       &quot;KIDNAPPING&quot;                 
+## [21] &quot;RUNAWAY&quot;                     &quot;DRIVING UNDER THE INFLUENCE&quot;
+## [23] &quot;SEX OFFENSES FORCIBLE&quot;       &quot;PROSTITUTION&quot;               
+## [25] &quot;DISORDERLY CONDUCT&quot;          &quot;ARSON&quot;                      
+## [27] &quot;FAMILY OFFENSES&quot;             &quot;LIQUOR LAWS&quot;                
+## [29] &quot;BRIBERY&quot;                     &quot;EMBEZZLEMENT&quot;               
+## [31] &quot;SUICIDE&quot;                     &quot;LOITERING&quot;                  
+## [33] &quot;SEX OFFENSES NON FORCIBLE&quot;   &quot;EXTORTION&quot;                  
+## [35] &quot;GAMBLING&quot;                    &quot;BAD CHECKS&quot;                 
+## [37] &quot;TREA&quot;                        &quot;RECOVERED VEHICLE&quot;          
+## [39] &quot;PORNOGRAPHY/OBSCENE MAT&quot;</code></pre>
+<div id="observation" class="section level3">
+<h3>Observation</h3>
+<p>The categories that seem to fit the ‘Violent Crime’ umbrella seem to be ‘Assault’, ‘Robbery’, and ‘Sex Offences Forcible’. Lets grab those columns.</p>
+<pre class="r"><code>mapdata &lt;-
+    train %&gt;%
+    filter(Category %in% c(&quot;ASSAULT&quot;, &quot;ROBBERY&quot;, &quot;SEX OFFENSES FORCIBLE&quot;))
+
+mapdata %&gt;%
+group_by(Category) %&gt;%
+summarise(n=n())</code></pre>
+<pre><code>## Source: local data frame [3 x 2]
+## 
+##                Category     n
+##                   (chr) (int)
+## 1               ASSAULT 76876
+## 2               ROBBERY 23000
+## 3 SEX OFFENSES FORCIBLE  4388</code></pre>
+</div>
+<div id="observation-1" class="section level3">
+<h3>Observation</h3>
+<p>Occurences of assault far outnumber the other crimes, and as such will be heavily represented in any aggregate observations. It will be interesting to look at violent crime both in aggregate and by specific category.</p>
+</div>
+</div>
+<div id="mapping" class="section level1">
+<h1>Mapping</h1>
+<p>Let’s build our first map. We will use the map provided by Kaggle, as well as the ggmap package. Lets being with an obvious first map, one with a point for each crime in the dataset.</p>
+<pre class="r"><code>library(ggplot2)
+library(ggmap)
+map &lt;- 
+    readRDS(&quot;../input/sf_map_copyright_openstreetmap_contributors.rds&quot;)
+
+ggmap(map, extent=&#39;device&#39;, legend=&quot;topleft&quot;) +
+geom_point(aes(x=X, y=Y, colour=Category), data=mapdata ) +  
+ggtitle(&#39;Violent Crime in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-3-1.png" title="" alt="" width="672" /></p>
+<div id="observation-2" class="section level3">
+<h3>Observation</h3>
+<p>This is not a particularly useful map. The colors all overlap and obscure one another. No patterns are readily visible. The small gaps that interupt the otherwise uniform coverage of the map seem to correspond to parks and bodies of water, and so is not that unusual. Lets see if mapping by category will be more revealing.</p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) +
+geom_point(aes(x=X, y=Y, colour=Category), data=mapdata ) +
+scale_colour_discrete(guide=&#39;none&#39;) +
+facet_wrap(~Category) +
+ggtitle(&#39;Violent Crime in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="672" /></p>
+</div>
+<div id="observation-3" class="section level3">
+<h3>Observation</h3>
+<p>Even when broken out by category the maps aren’t particularly revealing. The map coverage is lower for sex offences, but that is likely due to the overall fewer crimes of that category commiitted. Maybe a different type of map would be more informative.</p>
+<p>Lets try a contour plot. We will estimate the density of crimes from our longitude and latitudes and use that to plot contours. This should more easily reveal patterns and hotspots for violent crime.</p>
+<pre class="r"><code>contours &lt;- stat_density2d(
+aes(x = X, y = Y, fill = ..level.., alpha=..level..),
+size = 0.1, data = mapdata, n=200,
+geom = &quot;polygon&quot;)
+
+ggmap(map, extent=&#39;device&#39;, legend=&quot;topleft&quot;) + contours +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;)+
+ggtitle(&#39;Violent Crime in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="672" /></p>
+</div>
+<div id="observation-4" class="section level3">
+<h3>Observation</h3>
+<p>This map seems much more informative. It reveals a giant hotspot in the Tenderloin neighborhood, with lots of smaller hotspots in the surrounding neighborhoods. Additionally, there are spots in the south-east in the Hunter’s Point area and one all the way south in the Vistacion neighborhood.</p>
+<p>Lets pull the map in to focus on these areas. Additionally, lets look at maps by specific category of crime.</p>
+<pre class="r"><code>lims &lt;- coord_map(xlim=c(-122.47, -122.37), ylim=c(37.70, 37.81))
+
+ggmap(map, extent=&#39;device&#39;, legend=&quot;topleft&quot;) + lims + contours +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;)+
+ggtitle(&#39;Violent Crime in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contours +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~Category) +
+ggtitle(&#39;Violent Crime in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-6-2.png" title="" alt="" width="672" /></p>
+</div>
+<div id="observation-5" class="section level3">
+<h3>Observation</h3>
+<p>The overall structure of the contours seem to be about the same as the aggregate, with the largest hotspot centered in the Tenderloin neighborhood area. With Assault and Robbery, these occurences seem to be much more concentrated, while Sex Offences seems to cover a larger area. Additionally, a hotspot for Sex Offences appears in the Outer Mission neighborhood where the others do not have a hotspot. The lower overall density of sex offences compared to the other categrories of crime is expected, as there are simply fewer crimes of this category in the data.</p>
+<p>Now lets see if any interesting patterns emerge if we start looking at the information temporally. Lets start with crime by Day of Week.</p>
+<p>(Note: I could have created the plots broken out by Category and Day of Week by using ‘facet_wrap(~Category+DayOfWeek)’. However that command producem plots too samll to be appreciably viewed. As such, I broke out the mapping commands for each category separately. Also note that for the bar plots I use the option scales=‘free’. While this means that it will be more difficult to use the bar graphs to make absolute comparisons between the categories, it will allow easier observation of the structure within each category.)</p>
+<pre class="r"><code>contoursALT &lt;- stat_density2d(
+aes(x = X, y = Y, fill = ..level.., alpha=..level..),
+size = 0.1, data = filter(mapdata, Category==&#39;ASSAULT&#39;), n=200,
+geom = &quot;polygon&quot;)
+
+contoursROB &lt;- stat_density2d(
+aes(x = X, y = Y, fill = ..level.., alpha=..level..),
+size = 0.1, data = filter(mapdata, Category==&#39;ROBBERY&#39;), n=200,
+geom = &quot;polygon&quot;)
+
+contoursSOF &lt;- stat_density2d(
+aes(x = X, y = Y, fill = ..level.., alpha=..level..),
+size = 0.1, data = filter(mapdata, Category==&#39;SEX OFFENSES FORCIBLE&#39;), n=200,
+geom = &quot;polygon&quot;)
+
+ggmap(map, extent=&#39;device&#39;) + lims + contours +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~DayOfWeek) +
+ggtitle(&#39;Violent Crime in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contoursALT +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~DayOfWeek) +
+ggtitle(&#39;Assaults in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-7-2.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contoursROB +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~DayOfWeek) +
+ggtitle(&#39;Robberies in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-7-3.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contoursSOF +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~DayOfWeek) +
+ggtitle(&#39;Sex Offences Forcible in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-7-4.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggplot(data=mapdata, aes(x=DayOfWeek)) +
+geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+ylab(&#39;Count&#39;) </code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-7-5.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggplot(data=mapdata, aes(x=DayOfWeek)) +
+geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+ylab(&#39;Count&#39;) +
+facet_wrap(~Category, scales=&#39;free&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-7-6.png" title="" alt="" width="672" /></p>
+</div>
+<div id="observation-6" class="section level3">
+<h3>Observation</h3>
+<p>When looking at violent crime in aggregate, volume seems to be fairly constant, with only a slight bump up on the weekend. Whats interesting to note is that the crimes seem more concentrated to a central Tenderloin area on Tuesday, Saturday, and Sunday. The maps on these days exihbit less spread despite crime volume fairly similar to other days of the week, as shown in the bar plot.</p>
+<p>When looking at violent crime by catgory, we see smilar patterns in crime volume. Assaults and Sex Offences have slight peaks on the weekend, while robbery seems to peak on Friday and Saturday. The contours also change very little day over day. Interstingly, the more concentrated and less diffuse contours that are seen in aggregate on Tuesday, Saturday, and Sunday are not (or are less obviously) visible when looking at the contours for each category (more investigation needed to find out why, maybe.)</p>
+<p>Now lets look by hour.</p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contours +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~Hour) +
+ggtitle(&#39;Violent Crime in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contoursALT +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~Hour) +
+ggtitle(&#39;Assaults in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-8-2.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contoursROB +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~Hour) +
+ggtitle(&#39;Robberies in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-8-3.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contoursSOF +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~Hour) +
+ggtitle(&#39;Sex Offences Forcible in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-8-4.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggplot(data=mapdata, aes(x=Hour)) +
+geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+ylab(&#39;Count&#39;) </code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-8-5.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggplot(data=mapdata, aes(x=Hour)) +
+geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+ylab(&#39;Count&#39;) +
+facet_wrap(~Category, scales=&#39;free&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-8-6.png" title="" alt="" width="672" /></p>
+</div>
+<div id="observation-7" class="section level3">
+<h3>Observation</h3>
+<p>When looking in aggregate, there is a logical a dip in the sleepy, early morning twilight hours between 3am and 6am. It then picks up and holds steady starting around 3pm, before increasing one last time around midnight. The countour plots don’t seem to reveal any large particular variation.</p>
+<p>Looking by category reveals some intersting patterns. The dip in robbery occurs later than for the other crimes, between 5am and 7am. Robbery dips beteen 3am and 5am and sex offences dips between 3am and 6am. Additionally, robbery peaks around 10pm, two hours earier than the other categories. Also interesting to note is that the relative peak for sex offences is much larger for sex offences is much larger than the peaks for the other categories, with the peak for sex offences about twice as high as the next largest value. Looking at the contours, assault does not show any obvious patterns. Between 1 am and 4am, robbery is much more concentrated in the Tenderloin neighborhood. Between 1am and 3am, sx offences is similarly concentrated, but it is also highly diffuse in comparison to the other categories.</p>
+<p>Since we have noticed patterns late at night, it will be interesting to incorporate day of week information into these plots, as people are more likely to be awake at these hours on the weekend. Lets look at some barplots that do that.</p>
+<pre class="r"><code>ggplot(data=mapdata, aes(x=Hour)) +
+geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+ylab(&#39;Count&#39;) + 
+facet_wrap(~DayOfWeek)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggplot(data=filter(mapdata, Category==&#39;ASSAULT&#39;), aes(x=Hour)) +
+geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+ylab(&#39;Count of Assault&#39;) +
+facet_wrap(~DayOfWeek, scales=&#39;free&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-9-2.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggplot(data=filter(mapdata, Category==&#39;ROBBERY&#39;), aes(x=Hour)) +
+geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+ylab(&#39;Count of Robbery&#39;) +
+facet_wrap(~DayOfWeek, scales=&#39;free&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-9-3.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>#ggplot(data=filter(mapdata, Category==&#39;SEX OFFENCES FORCIBLE&#39;, aes(x=Hour)) +
+#geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+#ylab(&#39;Count of Sex Offences&#39;) +
+#facet_wrap(~DayOfWeek, scales=&#39;free&#39;)</code></pre>
+</div>
+<div id="observation-8" class="section level3">
+<h3>Observation</h3>
+<p>In aggregate, violent crime peaks late at night only on the weekend. When looking by category, Assault shows the same pattern. During the week, Robbery peaks earier, around 10pm, and on the weekends robbery peaks around 2am. Sex offenses continues to show a very strong midnight peak every day of the week. I wonder what that effect could be attributed to.</p>
+<p>Now lets look by month</p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contours +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~Month) +
+ggtitle(&#39;Violent Crime in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contoursALT +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~Month) +
+ggtitle(&#39;Assaults in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-10-2.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contoursROB +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~Month) +
+ggtitle(&#39;Robberies in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-10-3.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggmap(map, extent=&#39;device&#39;) + lims + contoursSOF +
+scale_alpha_continuous(range=c(0.25,0.4), guide=&#39;none&#39;) +
+scale_fill_gradient(&#39;Violent\nCrime\nDensity&#39;) +
+facet_wrap(~Month) +
+ggtitle(&#39;Sex Offences Forcible in San Francisco&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-10-4.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggplot(data=mapdata, aes(x=Month)) +
+geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+ylab(&#39;Count&#39;) </code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-10-5.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggplot(data=mapdata, aes(x=Month)) +
+geom_bar(colour=&quot;black&quot;, fill=&quot;skyblue&quot;) +
+ylab(&#39;Count&#39;) +
+facet_wrap(~Category, scales=&#39;free&#39;)</code></pre>
+<p><img src="output_files/figure-html/unnamed-chunk-10-6.png" title="" alt="" width="672" /></p>
+</div>
+<div id="observation-9" class="section level3">
+<h3>Observation</h3>
+<p>The barplots reveal a small cylical pattern where there are peaks in the Spring and Fall, and dips in the Summer and Winter. It seems that more extreme weather has a small effect at reducing violent crime. This is seen in the plot in aggregate, and in the plots by category. The contour plots don’t really show any patterns except for sex offences, which shows much more concentrated contours in February and July.</p>
+</div>
+</div>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>Just a very high level recap of what has been learned.</p>
+<p>– Contour Plots work better than plotting the points themselves for this data. – Violent crime seems to be concentrated aroud Tenderloin, with more distant spots in the Hunter’s Point, Vistacion, and Outer Mission Area. – Sex Offences seems to be concentrated more diffusely about these hotspots compared to the other two. – Violent crime is down early in the morning, up on the weekends, and down during the Summer and Winter. – Robbery peaks slightly earlier than the rest of violent crime during the week. – Assault is by far the most common violent crime.</p>
+</div>
+<div id="final-note" class="section level1">
+<h1>Final Note</h1>
+<p>Many of the things discussed here might seem fairly obvious. ‘Of course there will be less violent crime at those hours; everyone is asleep!’ or ‘Of course there is less violent crime in the Summer and Winter, everyone wants to stay indoors!’ Because those things are so obvious, it is a good thing that we see those effects! If we didn’t, it might indicate errors in the data. More excitingly, it could also reveal a truly unique effect in the data. I feel its good practice to make sure any obvious expectations are also evident in the data, as it is an easy way to improve the quality of the analysis.</p>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
