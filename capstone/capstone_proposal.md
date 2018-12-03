@@ -21,13 +21,31 @@
 
 
 ### 数据集
-```
-1. 详细描述数据集和数据集字段，比如数据集字段是怎么跟问题关联的、为什么关联。
-2. 获取数据集的方式和数据集的特征应该在必要时和相关文献的引用一并提供在该段落。
-3. 应该清楚如何在项目中使用数据集。
-4. 根据问题的上下文，考虑数据集的使用是否合理。
-```
+数据集来源于Kaggle上名为旧金山罪案类型分类的竞赛[^3]，最原始的数据来源为[SF.OpenData](https://datasf.org/opendata/) [^4]。
 
+数据集包含旧金山将近12年的详细犯罪记录，通过隔周抽取，将整个数据集分成了训练集和测试集，训练集包含878049个带标签样本，测试集包含884262个未带标签样本。
+
+训练集中的每个样本都包含9个属性，分别是：
+- Dates: 罪案发生的详细时间，格式：年-月-日 时-分-秒。
+- Category: 罪案发生的类型，一共39个，这是我们要预测的目标。
+- Descript: 罪案发生的详细描述。
+- DayOfWeek: 罪案发生在一周的星期几。
+- PdDistrict: 罪案发生的所属区域，一共10个。
+- Resolution: 罪案的处理方式。
+- Address: 罪案发生的街道地址。
+- X: 罪案发生所在经度。
+- Y: 罪案发生所在纬度。
+
+测试集则去除了Category、Descript、Resolution属性，增加了ID属性。因此在训练模型时，我们将移除训练集中的Descript属性和Resolution属性。
+
+对训练集的数据分布进行一个简单的可视化：
+- 基于District
+
+
+
+[^3]: San Francisco Crime Classification Data. Kaggle. https://www.kaggle.com/c/sf-crime/data
+[^4]: https://data.sfgov.org/browse?q=Crime+Incident
+[^5]: Junyang Li and Junyang Li, San Francisco Crime Classification
 ### 解决方案陈述
 ```
 1. 清晰描述一种适合该问题并且适合该数据集的解决方案。
