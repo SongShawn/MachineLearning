@@ -39,11 +39,21 @@
 测试集则去除了Category、Descript、Resolution属性，增加了ID属性。因此在训练模型时，我们将移除训练集中的Descript属性和Resolution属性。
 
 对训练集的数据分布进行一个简单的可视化：
+- 基于Dates，仅可视化基于小时的数据
+从下方图表中可以分析得出，犯罪案件的发生数量和时间段是有相关性的。
+图表中仅仅展示了小时和案件数量的相关性，在实践中还需要通过可视化分析出时间与犯罪案件类型的相关性，如在某个小时内发生A类型犯罪的概率远远高于其它犯罪类型。
+![基于小时的犯罪案件数量分布](images/hours.png)
+- 基于Category
+从下方图表中可以分析得出，39种犯罪类型的分布是很不平衡的。
+![基于犯罪类型的分布](images/Category.png)
+- 基于Day Of Week
+从下方图表中可以看出周五的犯罪案件数要多于其它时间，这可能和周五是分手日有关系[^1]。
+![基于DayOfWeek的犯罪案件数量分布](images/DayOfWeek.png)
 - 基于District
-![基于PdDistrict的犯罪案件分布](images/PdDistrict.png)
-从图表中可以看出某些社区的犯罪案件数明显高于其它社区。
-
-
+从下方图表中可以看出某些社区的犯罪案件数明显高于其它社区。
+![基于PdDistrict的犯罪案件数量分布](images/PdDistrict.png)
+- 基于Address
+训练集中一共存在23228个地址，可见地址的分布非常的松散，不能直接拿来作为特征使用。
 
 [^3]: San Francisco Crime Classification Data. Kaggle. https://www.kaggle.com/c/sf-crime/data
 [^4]: https://data.sfgov.org/browse?q=Crime+Incident
