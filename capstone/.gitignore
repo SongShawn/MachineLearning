@@ -117,3 +117,6 @@ dmypy.json
 
 # mine
 datasets/
+models/
+solutions/*.7z
+solutions/*.csv
