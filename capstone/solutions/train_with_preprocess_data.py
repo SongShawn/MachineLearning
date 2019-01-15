@@ -2,11 +2,12 @@ import pandas as pd
 
 # 取出训练集中的预测目标字段
 
-feature_names = ['Year', 'Month', 'Day', 'Hour', 'DayOfWeekID', 'PdDistrictID', 'HasBlock', 'PositionTypeID']
+feature_names = ['Year', 'Month', 'Day', 'Hour', 'DayOfWeekID', 'PdDistrictID', 'HasBlock', 'PositionTypeID', 'X', 'Y']
 
 
 train_data = pd.read_csv("../datasets/train_preprocess.csv")
-sample_data = train_data.sample(frac = 0.3, random_state=10)
+# sample_data = train_data.sample(frac = 0.3, random_state=10)
+sample_data = train_data
 
 target = sample_data['Category']
 features = sample_data[feature_names]
@@ -61,29 +62,37 @@ param['objective'] = 'multi:softprob'
 # scale weight of positive examples
 # param['eta'] = 0.01
 # param['max_depth'] = 6
-# param['silent'] = 1
+param['silent'] = 0
 # param['nthread'] = 8
 param['num_class'] = len(LabelEncTarget.classes_)
 
 param['eval_metric'] = 'mlogloss'
-param['tree_method'] = 'gpu_hist'
+# param['tree_method'] = 'gpu_exact'
+param['verbosity'] = 0
+param['seed'] = 10
 
 evallist = [(DTrain_X, 'train'), (DTest_X, 'Test')]
 
 param_grid = {
-    'eta' : [0.01],
-    'max_depth': [9],
-    'subsample' : [0.7],
+    'eta' : [0.2],
+    'max_depth': [8],
+    'subsample' : [0.8],
 #     'grow_policy' : ["depthwise", "lossguide"],
+    'colsample_bytree': [0.8],
+    'tree_method' : ['gpu_hist'],
+    'gamma': [0.1],
+    'scale_pos_weight':[1],
 }
 
-num_round = 1000
+num_round = 5000
 
 # 参数和模型保存文件名
 params,files = extra_params(param, param_grid)
 
 # 模型保存文件路径
-model_path = "../models/"+str(datetime.datetime.utcnow()).replace(':','_').replace(' ', '_').replace('.', '_') + "_" + str(num_round)
+model_path = "../models/" \
+    + str(datetime.datetime.utcnow()).replace(':','_').replace(' ', '_').replace('.', '_') \
+    + "_" + str(num_round)
 makedirs(model_path)
 
 # 模型文件名的含义
@@ -95,14 +104,18 @@ result_data = {'best_iteration' : [],
                'best_score' : []}
 
 def eta_calc(round_index, round_count):
-    etas = [0.1, 0.07, 0.05, 0.01]
-    for i in range(1,1+len(etas)):
-        if round_index < round_count/len(etas)*i:
-            return etas[i-1]
-    return etas[-1]
+    # etas = [0.01, 0.005, 0.001]
+    # for i in range(1,1+len(etas)):
+    #     if round_index < round_count/len(etas)*i:
+    #         return etas[i-1]
+    # return etas[-1]
+    return 0.4
+
+etas = [0.4 for i in range(num_round)]
 
 for i,a in enumerate(params):
-    bst =xgb.train(a, DTrain_X, num_round, evallist, early_stopping_rounds=None, learning_rates=None)
+    bst =xgb.train(a, DTrain_X, num_round, evallist, 
+                    early_stopping_rounds=5, learning_rates=None)
     bst.save_model(model_path + "/" + files[i] + ".model")
     result_data['best_iteration'].append(bst.best_iteration)
     result_data['best_score'].append(bst.best_score)

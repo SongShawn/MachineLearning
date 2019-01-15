@@ -1,0 +1,658 @@
+[
+  { "nodeid": 0, "leaf": -0.0501594953 },
+  { "nodeid": 0, "depth": 0, "split": "Y", "split_condition": 37.7325401, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "DayOfWeekID", "split_condition": 3, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": 0.00593031896 },
+      { "nodeid": 4, "depth": 2, "split": "X", "split_condition": -122.435677, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": 0.0591573529 },
+        { "nodeid": 8, "leaf": 0.329978734 }
+      ]}
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Month", "split_condition": 12, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "depth": 2, "split": "Day", "split_condition": 13, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "depth": 3, "split": "Month", "split_condition": 4, "yes": 11, "no": 12, "missing": 11, "children": [
+          { "nodeid": 11, "depth": 4, "split": "Hour", "split_condition": 16, "yes": 15, "no": 16, "missing": 15, "children": [
+            { "nodeid": 15, "leaf": -0.0315629728 },
+            { "nodeid": 16, "leaf": 0.0788405836 }
+          ]},
+          { "nodeid": 12, "depth": 4, "split": "Day", "split_condition": 10, "yes": 17, "no": 18, "missing": 17, "children": [
+            { "nodeid": 17, "leaf": -0.0445396155 },
+            { "nodeid": 18, "leaf": 0.00728376349 }
+          ]}
+        ]},
+        { "nodeid": 10, "depth": 3, "split": "Day", "split_condition": 28, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "depth": 4, "split": "DayOfWeekID", "split_condition": 5, "yes": 19, "no": 20, "missing": 19, "children": [
+            { "nodeid": 19, "depth": 5, "split": "DayOfWeekID", "split_condition": 2, "yes": 21, "no": 22, "missing": 21, "children": [
+              { "nodeid": 21, "depth": 6, "split": "Y", "split_condition": 37.7656898, "yes": 25, "no": 26, "missing": 25, "children": [
+                { "nodeid": 25, "leaf": 0.116635516 },
+                { "nodeid": 26, "depth": 7, "split": "X", "split_condition": -122.409012, "yes": 29, "no": 30, "missing": 29, "children": [
+                  { "nodeid": 29, "leaf": -0.035684146 },
+                  { "nodeid": 30, "leaf": 0.0723772869 }
+                ]}
+              ]},
+              { "nodeid": 22, "depth": 6, "split": "Y", "split_condition": 37.7767448, "yes": 27, "no": 28, "missing": 27, "children": [
+                { "nodeid": 27, "depth": 7, "split": "PdDistrictID", "split_condition": 5, "yes": 31, "no": 32, "missing": 31, "children": [
+                  { "nodeid": 31, "leaf": 0.111898273 },
+                  { "nodeid": 32, "leaf": -0.0282685515 }
+                ]},
+                { "nodeid": 28, "depth": 7, "split": "Month", "split_condition": 5, "yes": 33, "no": 34, "missing": 33, "children": [
+                  { "nodeid": 33, "leaf": 0.0653950945 },
+                  { "nodeid": 34, "leaf": 0.318057656 }
+                ]}
+              ]}
+            ]},
+            { "nodeid": 20, "depth": 5, "split": "X", "split_condition": -122.419846, "yes": 23, "no": 24, "missing": 23, "children": [
+              { "nodeid": 23, "leaf": 0.0591573529 },
+              { "nodeid": 24, "leaf": -0.0372899733 }
+            ]}
+          ]},
+          { "nodeid": 14, "leaf": -0.0393503495 }
+        ]}
+      ]},
+      { "nodeid": 6, "leaf": 0.197260275 }
+    ]}
+  ]},
+  { "nodeid": 0, "leaf": -0.050144475 },
+  { "nodeid": 0, "depth": 0, "split": "HasBlock", "split_condition": 1, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "Month", "split_condition": 3, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": 0.00728376349 },
+      { "nodeid": 4, "leaf": -0.0466428436 }
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "DayOfWeekID", "split_condition": 2, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "depth": 2, "split": "Year", "split_condition": 2011, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "depth": 3, "split": "Day", "split_condition": 12, "yes": 11, "no": 12, "missing": 11, "children": [
+          { "nodeid": 11, "leaf": 0.215256587 },
+          { "nodeid": 12, "depth": 4, "split": "DayOfWeekID", "split_condition": 1, "yes": 19, "no": 20, "missing": 19, "children": [
+            { "nodeid": 19, "leaf": -0.0310800318 },
+            { "nodeid": 20, "leaf": 0.111898273 }
+          ]}
+        ]},
+        { "nodeid": 8, "depth": 3, "split": "Month", "split_condition": 6, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "leaf": -0.0288907997 },
+          { "nodeid": 14, "leaf": 0.0230991337 }
+        ]}
+      ]},
+      { "nodeid": 6, "depth": 2, "split": "Day", "split_condition": 18, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "depth": 3, "split": "Hour", "split_condition": 22, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "leaf": -0.0457142852 },
+          { "nodeid": 16, "leaf": 0.0169611312 }
+        ]},
+        { "nodeid": 10, "depth": 3, "split": "Month", "split_condition": 8, "yes": 17, "no": 18, "missing": 17, "children": [
+          { "nodeid": 17, "depth": 4, "split": "Hour", "split_condition": 11, "yes": 21, "no": 22, "missing": 21, "children": [
+            { "nodeid": 21, "leaf": 0.0723772869 },
+            { "nodeid": 22, "leaf": -0.0401731618 }
+          ]},
+          { "nodeid": 18, "leaf": 0.169832408 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Year", "split_condition": 2014, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "PdDistrictID", "split_condition": 9, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": -0.0497165434 },
+      { "nodeid": 4, "depth": 2, "split": "Hour", "split_condition": 10, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": 0.0209345799 },
+        { "nodeid": 8, "leaf": -0.0379772969 }
+      ]}
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Y", "split_condition": 37.773037, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "leaf": 0.0591573529 },
+      { "nodeid": 6, "leaf": -0.0362579897 }
+    ]}
+  ]},
+  { "nodeid": 0, "leaf": -0.0501213558 },
+  { "nodeid": 0, "depth": 0, "split": "PdDistrictID", "split_condition": 9, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "X", "split_condition": -122.422974, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "PositionTypeID", "split_condition": 2, "yes": 5, "no": 6, "missing": 5, "children": [
+        { "nodeid": 5, "depth": 3, "split": "Hour", "split_condition": 15, "yes": 9, "no": 10, "missing": 9, "children": [
+          { "nodeid": 9, "leaf": -0.0305732489 },
+          { "nodeid": 10, "leaf": 0.121655442 }
+        ]},
+        { "nodeid": 6, "depth": 3, "split": "DayOfWeekID", "split_condition": 1, "yes": 11, "no": 12, "missing": 11, "children": [
+          { "nodeid": 11, "leaf": 0.0151332766 },
+          { "nodeid": 12, "leaf": -0.0455463752 }
+        ]}
+      ]},
+      { "nodeid": 4, "depth": 2, "split": "X", "split_condition": -122.412041, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "depth": 3, "split": "PdDistrictID", "split_condition": 4, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "depth": 4, "split": "HasBlock", "split_condition": 1, "yes": 17, "no": 18, "missing": 17, "children": [
+            { "nodeid": 17, "leaf": 0.068785049 },
+            { "nodeid": 18, "leaf": -0.0384000018 }
+          ]},
+          { "nodeid": 14, "depth": 4, "split": "Hour", "split_condition": 10, "yes": 19, "no": 20, "missing": 19, "children": [
+            { "nodeid": 19, "leaf": 0.0230991337 },
+            { "nodeid": 20, "leaf": 0.272340417 }
+          ]}
+        ]},
+        { "nodeid": 8, "depth": 3, "split": "PdDistrictID", "split_condition": 1, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "depth": 4, "split": "Year", "split_condition": 2008, "yes": 21, "no": 22, "missing": 21, "children": [
+            { "nodeid": 21, "leaf": -0.0300408173 },
+            { "nodeid": 22, "leaf": 0.108737864 }
+          ]},
+          { "nodeid": 16, "depth": 4, "split": "Year", "split_condition": 2005, "yes": 23, "no": 24, "missing": 23, "children": [
+            { "nodeid": 23, "leaf": 0.0484848507 },
+            { "nodeid": 24, "leaf": -0.0451312251 }
+          ]}
+        ]}
+      ]}
+    ]},
+    { "nodeid": 2, "leaf": 0.251603067 }
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Day", "split_condition": 18, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "leaf": -0.0490872599 },
+    { "nodeid": 2, "depth": 1, "split": "Day", "split_condition": 21, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "X", "split_condition": -122.423035, "yes": 5, "no": 6, "missing": 5, "children": [
+        { "nodeid": 5, "leaf": 0.0653950945 },
+        { "nodeid": 6, "leaf": -0.0362579897 }
+      ]},
+      { "nodeid": 4, "depth": 2, "split": "PdDistrictID", "split_condition": 9, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": -0.0466428436 },
+        { "nodeid": 8, "leaf": 0.010191083 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "leaf": -0.050157018 },
+  { "nodeid": 0, "depth": 0, "split": "Day", "split_condition": 29, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "Hour", "split_condition": 1, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": 0.0188919175 },
+      { "nodeid": 4, "depth": 2, "split": "PositionTypeID", "split_condition": 2, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "depth": 3, "split": "Hour", "split_condition": 12, "yes": 9, "no": 10, "missing": 9, "children": [
+          { "nodeid": 9, "leaf": 0.0591573529 },
+          { "nodeid": 10, "leaf": -0.0379772969 }
+        ]},
+        { "nodeid": 8, "depth": 3, "split": "Hour", "split_condition": 15, "yes": 11, "no": 12, "missing": 11, "children": [
+          { "nodeid": 11, "leaf": -0.0474243164 },
+          { "nodeid": 12, "depth": 4, "split": "Hour", "split_condition": 18, "yes": 13, "no": 14, "missing": 13, "children": [
+            { "nodeid": 13, "depth": 5, "split": "Day", "split_condition": 17, "yes": 15, "no": 16, "missing": 15, "children": [
+              { "nodeid": 15, "depth": 6, "split": "Day", "split_condition": 10, "yes": 17, "no": 18, "missing": 17, "children": [
+                { "nodeid": 17, "leaf": -0.0310800318 },
+                { "nodeid": 18, "leaf": 0.0991624817 }
+              ]},
+              { "nodeid": 16, "leaf": -0.0350657478 }
+            ]},
+            { "nodeid": 14, "leaf": -0.0462689586 }
+          ]}
+        ]}
+      ]}
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Month", "split_condition": 6, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "leaf": 0.107420497 },
+      { "nodeid": 6, "leaf": -0.0332871005 }
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Y", "split_condition": 37.7892723, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "HasBlock", "split_condition": 1, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": -0.0469423831 },
+      { "nodeid": 4, "depth": 2, "split": "Day", "split_condition": 17, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "depth": 3, "split": "Day", "split_condition": 14, "yes": 11, "no": 12, "missing": 11, "children": [
+          { "nodeid": 11, "depth": 4, "split": "DayOfWeekID", "split_condition": 5, "yes": 15, "no": 16, "missing": 15, "children": [
+            { "nodeid": 15, "leaf": -0.0441690162 },
+            { "nodeid": 16, "leaf": 0.0459620617 }
+          ]},
+          { "nodeid": 12, "leaf": 0.0882672891 }
+        ]},
+        { "nodeid": 8, "depth": 3, "split": "Y", "split_condition": 37.7855797, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "leaf": -0.0462011062 },
+          { "nodeid": 14, "leaf": 0.0230991337 }
+        ]}
+      ]}
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Day", "split_condition": 14, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "leaf": 0.15331696 },
+      { "nodeid": 6, "depth": 2, "split": "DayOfWeekID", "split_condition": 4, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "leaf": -0.0320237204 },
+        { "nodeid": 10, "leaf": 0.0230991337 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Day", "split_condition": 20, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "leaf": -0.0493901931 },
+    { "nodeid": 2, "depth": 1, "split": "Year", "split_condition": 2013, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "Year", "split_condition": 2004, "yes": 5, "no": 6, "missing": 5, "children": [
+        { "nodeid": 5, "leaf": 0.0169611312 },
+        { "nodeid": 6, "leaf": -0.0463022515 }
+      ]},
+      { "nodeid": 4, "depth": 2, "split": "Month", "split_condition": 5, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": 0.068785049 },
+        { "nodeid": 8, "leaf": -0.0305732489 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "PdDistrictID", "split_condition": 9, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "Y", "split_condition": 37.7658424, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "Year", "split_condition": 2012, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "depth": 3, "split": "Hour", "split_condition": 9, "yes": 11, "no": 12, "missing": 11, "children": [
+          { "nodeid": 11, "leaf": -0.0328844786 },
+          { "nodeid": 12, "depth": 4, "split": "Year", "split_condition": 2008, "yes": 17, "no": 18, "missing": 17, "children": [
+            { "nodeid": 17, "depth": 5, "split": "Hour", "split_condition": 17, "yes": 21, "no": 22, "missing": 21, "children": [
+              { "nodeid": 21, "leaf": 0.199087948 },
+              { "nodeid": 22, "leaf": 0.0323127024 }
+            ]},
+            { "nodeid": 18, "depth": 5, "split": "Y", "split_condition": 37.7492371, "yes": 23, "no": 24, "missing": 23, "children": [
+              { "nodeid": 23, "leaf": -0.0350657478 },
+              { "nodeid": 24, "leaf": 0.0723772869 }
+            ]}
+          ]}
+        ]},
+        { "nodeid": 8, "depth": 3, "split": "X", "split_condition": -122.418381, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "leaf": 0.365863204 },
+          { "nodeid": 14, "leaf": 0.0953469425 }
+        ]}
+      ]},
+      { "nodeid": 4, "depth": 2, "split": "Month", "split_condition": 11, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "depth": 3, "split": "X", "split_condition": -122.450455, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "leaf": 0.116635516 },
+          { "nodeid": 16, "depth": 4, "split": "Hour", "split_condition": 7, "yes": 19, "no": 20, "missing": 19, "children": [
+            { "nodeid": 19, "leaf": 0.176094681 },
+            { "nodeid": 20, "depth": 5, "split": "Year", "split_condition": 2004, "yes": 25, "no": 26, "missing": 25, "children": [
+              { "nodeid": 25, "leaf": 0.147205502 },
+              { "nodeid": 26, "leaf": 0.528068066 }
+            ]}
+          ]}
+        ]},
+        { "nodeid": 10, "leaf": 0.146955624 }
+      ]}
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "X", "split_condition": -122.413979, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "leaf": 0.0788405836 },
+      { "nodeid": 6, "leaf": -0.0353808366 }
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Day", "split_condition": 2, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "leaf": 0.0117551023 },
+    { "nodeid": 2, "depth": 1, "split": "PdDistrictID", "split_condition": 9, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": -0.0498607606 },
+      { "nodeid": 4, "depth": 2, "split": "Hour", "split_condition": 18, "yes": 5, "no": 6, "missing": 5, "children": [
+        { "nodeid": 5, "leaf": -0.0370452031 },
+        { "nodeid": 6, "leaf": 0.0188919175 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Year", "split_condition": 2006, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "DayOfWeekID", "split_condition": 1, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": 0.0562814064 },
+      { "nodeid": 4, "depth": 2, "split": "Year", "split_condition": 2005, "yes": 5, "no": 6, "missing": 5, "children": [
+        { "nodeid": 5, "leaf": -0.0436099358 },
+        { "nodeid": 6, "depth": 3, "split": "PdDistrictID", "split_condition": 4, "yes": 7, "no": 8, "missing": 7, "children": [
+          { "nodeid": 7, "leaf": 0.0230991337 },
+          { "nodeid": 8, "leaf": -0.0294807367 }
+        ]}
+      ]}
+    ]},
+    { "nodeid": 2, "leaf": -0.0495564193 }
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Y", "split_condition": 37.7612572, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "Day", "split_condition": 18, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "PositionTypeID", "split_condition": 13, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "depth": 3, "split": "Year", "split_condition": 2007, "yes": 11, "no": 12, "missing": 11, "children": [
+          { "nodeid": 11, "leaf": 0.0396881662 },
+          { "nodeid": 12, "leaf": -0.0347381867 }
+        ]},
+        { "nodeid": 8, "depth": 3, "split": "X", "split_condition": -122.421898, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "leaf": 0.0134003349 },
+          { "nodeid": 14, "leaf": 0.191229582 }
+        ]}
+      ]},
+      { "nodeid": 4, "leaf": -0.0415267199 }
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Day", "split_condition": 30, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "depth": 2, "split": "PdDistrictID", "split_condition": 2, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "depth": 3, "split": "Y", "split_condition": 37.794136, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "leaf": 0.0484848507 },
+          { "nodeid": 16, "leaf": -0.0359763317 }
+        ]},
+        { "nodeid": 10, "depth": 3, "split": "Y", "split_condition": 37.7740211, "yes": 17, "no": 18, "missing": 17, "children": [
+          { "nodeid": 17, "depth": 4, "split": "Day", "split_condition": 21, "yes": 19, "no": 20, "missing": 19, "children": [
+            { "nodeid": 19, "leaf": -0.0384000018 },
+            { "nodeid": 20, "leaf": 0.0230991337 }
+          ]},
+          { "nodeid": 18, "leaf": -0.0483532771 }
+        ]}
+      ]},
+      { "nodeid": 6, "leaf": 0.0484848507 }
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Year", "split_condition": 2007, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "Day", "split_condition": 28, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "X", "split_condition": -122.452667, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": 0.103181429 },
+        { "nodeid": 8, "depth": 3, "split": "Day", "split_condition": 5, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "depth": 4, "split": "PdDistrictID", "split_condition": 4, "yes": 19, "no": 20, "missing": 19, "children": [
+            { "nodeid": 19, "leaf": 0.116635516 },
+            { "nodeid": 20, "leaf": -0.0276112631 }
+          ]},
+          { "nodeid": 14, "depth": 4, "split": "Day", "split_condition": 22, "yes": 21, "no": 22, "missing": 21, "children": [
+            { "nodeid": 21, "leaf": -0.0441034399 },
+            { "nodeid": 22, "leaf": 0.00221914006 }
+          ]}
+        ]}
+      ]},
+      { "nodeid": 4, "leaf": 0.167832166 }
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Y", "split_condition": 37.7281342, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "depth": 2, "split": "X", "split_condition": -122.435677, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "leaf": 0.0230991337 },
+        { "nodeid": 10, "leaf": -0.0276112631 }
+      ]},
+      { "nodeid": 6, "depth": 2, "split": "X", "split_condition": -122.401024, "yes": 11, "no": 12, "missing": 11, "children": [
+        { "nodeid": 11, "depth": 3, "split": "Hour", "split_condition": 18, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "depth": 4, "split": "Y", "split_condition": 37.7874069, "yes": 23, "no": 24, "missing": 23, "children": [
+            { "nodeid": 23, "depth": 5, "split": "Year", "split_condition": 2014, "yes": 27, "no": 28, "missing": 27, "children": [
+              { "nodeid": 27, "depth": 6, "split": "PdDistrictID", "split_condition": 8, "yes": 33, "no": 34, "missing": 33, "children": [
+                { "nodeid": 33, "leaf": 0.397485942 },
+                { "nodeid": 34, "leaf": 0.118625678 }
+              ]},
+              { "nodeid": 28, "leaf": 0.0849772394 }
+            ]},
+            { "nodeid": 24, "depth": 5, "split": "Y", "split_condition": 37.7972488, "yes": 29, "no": 30, "missing": 29, "children": [
+              { "nodeid": 29, "leaf": -0.0269158874 },
+              { "nodeid": 30, "leaf": 0.170933589 }
+            ]}
+          ]},
+          { "nodeid": 16, "depth": 4, "split": "X", "split_condition": -122.441017, "yes": 25, "no": 26, "missing": 25, "children": [
+            { "nodeid": 25, "leaf": 0.243109539 },
+            { "nodeid": 26, "depth": 5, "split": "Day", "split_condition": 12, "yes": 31, "no": 32, "missing": 31, "children": [
+              { "nodeid": 31, "leaf": -0.0320237204 },
+              { "nodeid": 32, "depth": 6, "split": "PdDistrictID", "split_condition": 5, "yes": 35, "no": 36, "missing": 35, "children": [
+                { "nodeid": 35, "leaf": 0.158401459 },
+                { "nodeid": 36, "leaf": 0.0117551023 }
+              ]}
+            ]}
+          ]}
+        ]},
+        { "nodeid": 12, "depth": 3, "split": "Year", "split_condition": 2012, "yes": 17, "no": 18, "missing": 17, "children": [
+          { "nodeid": 17, "leaf": -0.0269158874 },
+          { "nodeid": 18, "leaf": 0.0723772869 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "HasBlock", "split_condition": 1, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "X", "split_condition": -122.406349, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "Day", "split_condition": 13, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": 0.1621764 },
+        { "nodeid": 8, "leaf": 0.426457107 }
+      ]},
+      { "nodeid": 4, "depth": 2, "split": "Month", "split_condition": 8, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "leaf": 0.179750353 },
+        { "nodeid": 10, "leaf": -0.0261790194 }
+      ]}
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Hour", "split_condition": 15, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "depth": 2, "split": "X", "split_condition": -122.402809, "yes": 11, "no": 12, "missing": 11, "children": [
+        { "nodeid": 11, "depth": 3, "split": "PdDistrictID", "split_condition": 4, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "depth": 4, "split": "Month", "split_condition": 5, "yes": 21, "no": 22, "missing": 21, "children": [
+            { "nodeid": 21, "leaf": 0.0591573529 },
+            { "nodeid": 22, "leaf": 0.365227163 }
+          ]},
+          { "nodeid": 16, "depth": 4, "split": "Day", "split_condition": 11, "yes": 23, "no": 24, "missing": 23, "children": [
+            { "nodeid": 23, "leaf": 0.20964019 },
+            { "nodeid": 24, "depth": 5, "split": "Month", "split_condition": 5, "yes": 27, "no": 28, "missing": 27, "children": [
+              { "nodeid": 27, "leaf": 0.0917197466 },
+              { "nodeid": 28, "depth": 6, "split": "Year", "split_condition": 2007, "yes": 31, "no": 32, "missing": 31, "children": [
+                { "nodeid": 31, "leaf": 0.0188919175 },
+                { "nodeid": 32, "leaf": -0.0347381867 }
+              ]}
+            ]}
+          ]}
+        ]},
+        { "nodeid": 12, "leaf": 0.00463768141 }
+      ]},
+      { "nodeid": 6, "depth": 2, "split": "X", "split_condition": -122.422157, "yes": 13, "no": 14, "missing": 13, "children": [
+        { "nodeid": 13, "depth": 3, "split": "X", "split_condition": -122.456093, "yes": 17, "no": 18, "missing": 17, "children": [
+          { "nodeid": 17, "leaf": 0.010191083 },
+          { "nodeid": 18, "leaf": -0.0379772969 }
+        ]},
+        { "nodeid": 14, "depth": 3, "split": "PdDistrictID", "split_condition": 3, "yes": 19, "no": 20, "missing": 19, "children": [
+          { "nodeid": 19, "leaf": -0.0347381867 },
+          { "nodeid": 20, "depth": 4, "split": "Month", "split_condition": 5, "yes": 25, "no": 26, "missing": 25, "children": [
+            { "nodeid": 25, "leaf": 0.190144926 },
+            { "nodeid": 26, "depth": 5, "split": "Day", "split_condition": 19, "yes": 29, "no": 30, "missing": 29, "children": [
+              { "nodeid": 29, "leaf": 0.0788405836 },
+              { "nodeid": 30, "leaf": -0.0282685515 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "PdDistrictID", "split_condition": 9, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "leaf": -0.049913168 },
+    { "nodeid": 2, "depth": 1, "split": "Y", "split_condition": 37.7844009, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": -0.0340425521 },
+      { "nodeid": 4, "leaf": 0.0882672891 }
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Y", "split_condition": 37.7997055, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "leaf": -0.0500387214 },
+    { "nodeid": 2, "leaf": 0.010191083 }
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Hour", "split_condition": 4, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "Hour", "split_condition": 2, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": -0.0375266522 },
+      { "nodeid": 4, "leaf": 0.235253662 }
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Year", "split_condition": 2011, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "depth": 2, "split": "X", "split_condition": -122.431923, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "depth": 3, "split": "Month", "split_condition": 7, "yes": 11, "no": 12, "missing": 11, "children": [
+          { "nodeid": 11, "leaf": -0.0367919244 },
+          { "nodeid": 12, "leaf": 0.0611145906 }
+        ]},
+        { "nodeid": 8, "leaf": -0.0483281538 }
+      ]},
+      { "nodeid": 6, "depth": 2, "split": "X", "split_condition": -122.415001, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "depth": 3, "split": "Year", "split_condition": 2012, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "leaf": 0.0151332766 },
+          { "nodeid": 14, "leaf": -0.0417598821 }
+        ]},
+        { "nodeid": 10, "depth": 3, "split": "Hour", "split_condition": 18, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "depth": 4, "split": "Month", "split_condition": 6, "yes": 17, "no": 18, "missing": 17, "children": [
+            { "nodeid": 17, "leaf": 0.0230991337 },
+            { "nodeid": 18, "leaf": -0.0328844786 }
+          ]},
+          { "nodeid": 16, "leaf": 0.227246374 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Y", "split_condition": 37.7180099, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "leaf": 0.0509554148 },
+    { "nodeid": 2, "leaf": -0.0501108393 }
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "X", "split_condition": -122.472984, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "leaf": 0.00593031896 },
+    { "nodeid": 2, "depth": 1, "split": "X", "split_condition": -122.410927, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": -0.0492218621 },
+      { "nodeid": 4, "depth": 2, "split": "X", "split_condition": -122.409874, "yes": 5, "no": 6, "missing": 5, "children": [
+        { "nodeid": 5, "leaf": 0.068785049 },
+        { "nodeid": 6, "depth": 3, "split": "PositionTypeID", "split_condition": 2, "yes": 7, "no": 8, "missing": 7, "children": [
+          { "nodeid": 7, "leaf": 0.0151332766 },
+          { "nodeid": 8, "leaf": -0.0470179096 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "leaf": -0.0501886383 },
+  { "nodeid": 0, "depth": 0, "split": "Hour", "split_condition": 6, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "PdDistrictID", "split_condition": 7, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": -0.0384000018 },
+      { "nodeid": 4, "leaf": 0.0377253816 }
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Year", "split_condition": 2014, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "leaf": -0.0497658513 },
+      { "nodeid": 6, "depth": 2, "split": "PdDistrictID", "split_condition": 7, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": -0.0347381867 },
+        { "nodeid": 8, "leaf": 0.0209345799 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "leaf": -0.0501838624 },
+  { "nodeid": 0, "depth": 0, "split": "X", "split_condition": -122.460304, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "Month", "split_condition": 6, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": 0.137142852 },
+      { "nodeid": 4, "leaf": -0.0310800318 }
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "PdDistrictID", "split_condition": 5, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "depth": 2, "split": "PositionTypeID", "split_condition": 13, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "depth": 3, "split": "Day", "split_condition": 6, "yes": 11, "no": 12, "missing": 11, "children": [
+          { "nodeid": 11, "leaf": 0.0562814064 },
+          { "nodeid": 12, "depth": 4, "split": "Month", "split_condition": 10, "yes": 17, "no": 18, "missing": 17, "children": [
+            { "nodeid": 17, "leaf": -0.0441690162 },
+            { "nodeid": 18, "leaf": 0.0151332766 }
+          ]}
+        ]},
+        { "nodeid": 8, "depth": 3, "split": "Y", "split_condition": 37.7443848, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "leaf": -0.0300408173 },
+          { "nodeid": 14, "depth": 4, "split": "Day", "split_condition": 4, "yes": 19, "no": 20, "missing": 19, "children": [
+            { "nodeid": 19, "leaf": -0.0269158874 },
+            { "nodeid": 20, "depth": 5, "split": "Y", "split_condition": 37.79599, "yes": 21, "no": 22, "missing": 21, "children": [
+              { "nodeid": 21, "leaf": 0.0870630667 },
+              { "nodeid": 22, "leaf": -0 }
+            ]}
+          ]}
+        ]}
+      ]},
+      { "nodeid": 6, "depth": 2, "split": "X", "split_condition": -122.410156, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "leaf": -0.0455028899 },
+        { "nodeid": 10, "depth": 3, "split": "X", "split_condition": -122.408043, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "leaf": 0.116635516 },
+          { "nodeid": 16, "leaf": -0.0419825092 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Day", "split_condition": 2, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "leaf": 0.0188919175 },
+    { "nodeid": 2, "depth": 1, "split": "PdDistrictID", "split_condition": 9, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "leaf": -0.0499097705 },
+      { "nodeid": 4, "depth": 2, "split": "X", "split_condition": -122.414268, "yes": 5, "no": 6, "missing": 5, "children": [
+        { "nodeid": 5, "leaf": 0.00870240852 },
+        { "nodeid": 6, "leaf": -0.0372899733 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Hour", "split_condition": 19, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "PdDistrictID", "split_condition": 6, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "Day", "split_condition": 20, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "depth": 3, "split": "Month", "split_condition": 11, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "leaf": -0.0459868014 },
+          { "nodeid": 14, "leaf": 0.0991624817 }
+        ]},
+        { "nodeid": 8, "depth": 3, "split": "Month", "split_condition": 9, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "depth": 4, "split": "HasBlock", "split_condition": 1, "yes": 17, "no": 18, "missing": 17, "children": [
+            { "nodeid": 17, "leaf": 0.0188919175 },
+            { "nodeid": 18, "depth": 5, "split": "X", "split_condition": -122.418282, "yes": 19, "no": 20, "missing": 19, "children": [
+              { "nodeid": 19, "leaf": 0.0230991337 },
+              { "nodeid": 20, "leaf": 0.170933589 }
+            ]}
+          ]},
+          { "nodeid": 16, "leaf": -0.0300408173 }
+        ]}
+      ]},
+      { "nodeid": 4, "depth": 2, "split": "Day", "split_condition": 6, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "leaf": 0.00340184267 },
+        { "nodeid": 10, "leaf": -0.0467282832 }
+      ]}
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "X", "split_condition": -122.417046, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "leaf": 0.153974891 },
+      { "nodeid": 6, "depth": 2, "split": "Year", "split_condition": 2010, "yes": 11, "no": 12, "missing": 11, "children": [
+        { "nodeid": 11, "leaf": -0.035684146 },
+        { "nodeid": 12, "leaf": 0.0931747034 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Y", "split_condition": 37.7621002, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "Year", "split_condition": 2009, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "Y", "split_condition": 37.7554474, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": 0.24975054 },
+        { "nodeid": 8, "leaf": 0.0188919175 }
+      ]},
+      { "nodeid": 4, "depth": 2, "split": "Y", "split_condition": 37.7315674, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "depth": 3, "split": "PositionTypeID", "split_condition": 9, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "leaf": -0.0300408173 },
+          { "nodeid": 16, "leaf": 0.0230991337 }
+        ]},
+        { "nodeid": 10, "leaf": 0.150183544 }
+      ]}
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Year", "split_condition": 2008, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "depth": 2, "split": "Y", "split_condition": 37.7825851, "yes": 11, "no": 12, "missing": 11, "children": [
+        { "nodeid": 11, "depth": 3, "split": "Hour", "split_condition": 15, "yes": 17, "no": 18, "missing": 17, "children": [
+          { "nodeid": 17, "leaf": -0.0375266522 },
+          { "nodeid": 18, "leaf": 0.0680851042 }
+        ]},
+        { "nodeid": 12, "depth": 3, "split": "HasBlock", "split_condition": 1, "yes": 19, "no": 20, "missing": 19, "children": [
+          { "nodeid": 19, "depth": 4, "split": "Day", "split_condition": 19, "yes": 23, "no": 24, "missing": 23, "children": [
+            { "nodeid": 23, "leaf": -0.0261790194 },
+            { "nodeid": 24, "leaf": 0.0230991337 }
+          ]},
+          { "nodeid": 20, "depth": 4, "split": "Day", "split_condition": 24, "yes": 25, "no": 26, "missing": 25, "children": [
+            { "nodeid": 25, "leaf": 0.199087948 },
+            { "nodeid": 26, "leaf": 0.0230991337 }
+          ]}
+        ]}
+      ]},
+      { "nodeid": 6, "depth": 2, "split": "Y", "split_condition": 37.7853355, "yes": 13, "no": 14, "missing": 13, "children": [
+        { "nodeid": 13, "leaf": -0.0461665317 },
+        { "nodeid": 14, "depth": 3, "split": "X", "split_condition": -122.417145, "yes": 21, "no": 22, "missing": 21, "children": [
+          { "nodeid": 21, "leaf": 0.0633461028 },
+          { "nodeid": 22, "leaf": -0.0359763317 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "Y", "split_condition": 37.76968, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "depth": 1, "split": "Day", "split_condition": 13, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "Y", "split_condition": 37.739872, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": 0.0680851042 },
+        { "nodeid": 8, "depth": 3, "split": "Day", "split_condition": 4, "yes": 13, "no": 14, "missing": 13, "children": [
+          { "nodeid": 13, "leaf": 0.0188919175 },
+          { "nodeid": 14, "leaf": -0.0367919244 }
+        ]}
+      ]},
+      { "nodeid": 4, "leaf": -0.0457948036 }
+    ]},
+    { "nodeid": 2, "depth": 1, "split": "Hour", "split_condition": 18, "yes": 5, "no": 6, "missing": 5, "children": [
+      { "nodeid": 5, "depth": 2, "split": "Day", "split_condition": 28, "yes": 9, "no": 10, "missing": 9, "children": [
+        { "nodeid": 9, "depth": 3, "split": "Day", "split_condition": 14, "yes": 15, "no": 16, "missing": 15, "children": [
+          { "nodeid": 15, "depth": 4, "split": "HasBlock", "split_condition": 1, "yes": 19, "no": 20, "missing": 19, "children": [
+            { "nodeid": 19, "leaf": 0.142043546 },
+            { "nodeid": 20, "depth": 5, "split": "X", "split_condition": -122.406235, "yes": 23, "no": 24, "missing": 23, "children": [
+              { "nodeid": 23, "leaf": -0.0381919779 },
+              { "nodeid": 24, "leaf": 0.0230991337 }
+            ]}
+          ]},
+          { "nodeid": 16, "depth": 4, "split": "X", "split_condition": -122.408516, "yes": 21, "no": 22, "missing": 21, "children": [
+            { "nodeid": 21, "leaf": 0.194244131 },
+            { "nodeid": 22, "leaf": 0.0323127024 }
+          ]}
+        ]},
+        { "nodeid": 10, "leaf": -0.0353808366 }
+      ]},
+      { "nodeid": 6, "depth": 2, "split": "Month", "split_condition": 10, "yes": 11, "no": 12, "missing": 11, "children": [
+        { "nodeid": 11, "depth": 3, "split": "Hour", "split_condition": 19, "yes": 17, "no": 18, "missing": 17, "children": [
+          { "nodeid": 17, "leaf": 0.0209345799 },
+          { "nodeid": 18, "leaf": -0.0404721759 }
+        ]},
+        { "nodeid": 12, "leaf": 0.0377253816 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "X", "split_condition": -122.480919, "yes": 1, "no": 2, "missing": 1, "children": [
+    { "nodeid": 1, "leaf": 0.0169611312 },
+    { "nodeid": 2, "depth": 1, "split": "Hour", "split_condition": 22, "yes": 3, "no": 4, "missing": 3, "children": [
+      { "nodeid": 3, "depth": 2, "split": "DayOfWeekID", "split_condition": 6, "yes": 5, "no": 6, "missing": 5, "children": [
+        { "nodeid": 5, "leaf": -0.0496189557 },
+        { "nodeid": 6, "depth": 3, "split": "Y", "split_condition": 37.7607422, "yes": 9, "no": 10, "missing": 9, "children": [
+          { "nodeid": 9, "leaf": 0.0169611312 },
+          { "nodeid": 10, "leaf": -0.0379772969 }
+        ]}
+      ]},
+      { "nodeid": 4, "depth": 2, "split": "Month", "split_condition": 5, "yes": 7, "no": 8, "missing": 7, "children": [
+        { "nodeid": 7, "leaf": 0.0230991337 },
+        { "nodeid": 8, "leaf": -0.0367919244 }
+      ]}
+    ]}
+  ]}
+]
