@@ -1,13 +1,11 @@
 import pandas as pd
-import time
-import datetime
 
 # 取出训练集中的预测目标字段
 feature_names = ['Year', 'Month', 'Day', 'Hour', 'DayOfWeekID', 'PdDistrictID', 'HasBlock', 'PositionTypeID', 'X', 'Y']
 
 train_data = pd.read_csv("../datasets/train_preprocess.csv")
-# sample_data = train_data.sample(frac = 0.01, random_state=10)
-sample_data = train_data
+sample_data = train_data.sample(frac = 0.01, random_state=10)
+# sample_data = train_data
 
 target = sample_data['Category']
 features = sample_data[feature_names]
@@ -33,7 +31,7 @@ param['silent'] = 1
 param['num_class'] = len(LabelEncTarget.classes_)
 
 param['eval_metric'] = 'mlogloss'
-# param['verbosity'] = 4
+# param['verbosity'] = 0
 param['seed'] = 10
 
 param['max_depth'] = 8
@@ -46,20 +44,14 @@ param['scale_pos_weight'] = 1
 
 evallist = [(DTrain_X, 'train'), (DTest_X, 'Test')]
 
-num_round = 5000
-early_stop = 5
+num_round = 100
+early_stop = 1
 
-etas = [0.01]
-# etas = [0.2]
-start = time.time()
-model_name = "../models/model_eta_0.3.model"
-for i,eta in enumerate(etas) :
-    param['eta'] = eta
-    bst = xgb.train(param, DTrain_X, num_boost_round=num_round, 
-                evals = evallist, early_stopping_rounds=early_stop,
-                xgb_model=None)
-    model_name = '../models/model_eta_0.01_' + str(eta) + '.model'
-    bst.save_model(model_name)
-    print('{}.th traning, eta: {}, best_score: {}'.format(i, eta, bst.best_score))
+# etas = [0.2, 0.1, 0.05, 0.01, 0.001]
+etas = [0.1 for i in range(num_round)]
 
-print('CPU hist Trainig Time: %s seconds.' % (str(time.time() - start)))
+print(etas)
+# param['learning_rate'] = 0.1
+bst = xgb.train(param, DTrain_X, num_boost_round=num_round, 
+            evals = evallist, early_stopping_rounds=None,
+            learning_rates=etas)

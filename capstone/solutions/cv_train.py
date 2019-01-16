@@ -1,22 +1,23 @@
 import pandas as pd
+import xgboost as xgb
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 import time
 import datetime
+from os import makedirs, system
+
 
 # 取出训练集中的预测目标字段
 feature_names = ['Year', 'Month', 'Day', 'Hour', 'DayOfWeekID', 'PdDistrictID', 'HasBlock', 'PositionTypeID', 'X', 'Y']
-
 train_data = pd.read_csv("../datasets/train_preprocess.csv")
-# sample_data = train_data.sample(frac = 0.01, random_state=10)
+# sample_data = train_data.sample(frac = 0.3, random_state=10)
 sample_data = train_data
 
 target = sample_data['Category']
 features = sample_data[feature_names]
 
-# #### 开始训练模型
-import xgboost as xgb
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 
+# #### 开始训练模型
 LabelEncTarget = LabelEncoder()
 target = LabelEncTarget.fit_transform(target)
 
@@ -29,37 +30,32 @@ DTest_X = xgb.DMatrix(data=X_test, label=y_test)
 
 param = dict()
 param['objective'] = 'multi:softprob'
-param['silent'] = 1
+param['silent'] = 0
 param['num_class'] = len(LabelEncTarget.classes_)
 
 param['eval_metric'] = 'mlogloss'
-# param['verbosity'] = 4
+param['verbosity'] = 3
 param['seed'] = 10
 
 param['max_depth'] = 8
 param['subsample'] = 0.8
 param['colsample_bytree'] = 0.8
-param['tree_method'] = 'hist'
+param['tree_method'] = 'gpu_hist'
 param['gamma'] = 0.1
 param['scale_pos_weight'] = 1
 
 
 evallist = [(DTrain_X, 'train'), (DTest_X, 'Test')]
 
+
 num_round = 5000
-early_stop = 5
 
-etas = [0.01]
-# etas = [0.2]
 start = time.time()
-model_name = "../models/model_eta_0.3.model"
-for i,eta in enumerate(etas) :
-    param['eta'] = eta
-    bst = xgb.train(param, DTrain_X, num_boost_round=num_round, 
-                evals = evallist, early_stopping_rounds=early_stop,
-                xgb_model=None)
-    model_name = '../models/model_eta_0.01_' + str(eta) + '.model'
-    bst.save_model(model_name)
-    print('{}.th traning, eta: {}, best_score: {}'.format(i, eta, bst.best_score))
 
-print('CPU hist Trainig Time: %s seconds.' % (str(time.time() - start)))
+
+bst =xgb.train(a, DTrain_X, num_round, evallist, 
+                early_stopping_rounds=20)
+# bst.save_model(model_path + "/" + files[i] + ".model")
+    
+
+print('GPU Training Time: %s seconds.' % (str(time.time() - start)))
