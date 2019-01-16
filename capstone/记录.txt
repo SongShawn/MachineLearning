@@ -1,0 +1,27 @@
+01-16: 
+今天训练的xgboost的模型过拟合了，训练损失约为2.3左右。测试集损失为3.15642，比基准模型使用的对数几率回归得到模型还差。
+param为：
+param['objective'] = 'multi:softprob'
+param['silent'] = 1
+param['num_class'] = len(LabelEncTarget.classes_)
+param['eval_metric'] = 'mlogloss'
+# param['verbosity'] = 4
+param['seed'] = 10
+param['max_depth'] = 8
+param['subsample'] = 0.8
+param['colsample_bytree'] = 0.8
+param['tree_method'] = 'hist'
+param['gamma'] = 0.1
+param['scale_pos_weight'] = 1
+param['eta'] = 0.01
+num_round = 5000，
+大约
+
+model_name: model_eta_0.01_0.01.model
+
+修改多个可以预防过拟合的参数
+1. max_depth = 6
+2. gamma = 1  # alias min_split_loss
+3. min_child_weight = 10  # 可以简单理解为落到叶子结点的最少样本个数。
+4. max_delta_step 
+. 删除scale_pos_weight参数

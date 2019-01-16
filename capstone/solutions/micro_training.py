@@ -20,7 +20,8 @@ from sklearn.preprocessing import LabelEncoder
 LabelEncTarget = LabelEncoder()
 target = LabelEncTarget.fit_transform(target)
 
-X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = 
+    train_test_split(features, target, test_size=0.2, random_state=42)
 print('X_train has {} samples.'.format(X_train.shape[0]))
 print('X_test has {} samples.'.format(X_test.shape[0]))
 
@@ -36,12 +37,13 @@ param['eval_metric'] = 'mlogloss'
 # param['verbosity'] = 4
 param['seed'] = 10
 
-param['max_depth'] = 8
+param['max_depth'] = 6
 param['subsample'] = 0.8
 param['colsample_bytree'] = 0.8
 param['tree_method'] = 'hist'
-param['gamma'] = 0.1
-param['scale_pos_weight'] = 1
+param['gamma'] = 2
+param['min_child_weight'] = 10
+param['max_delta_step'] = 2
 
 
 evallist = [(DTrain_X, 'train'), (DTest_X, 'Test')]
