@@ -24,4 +24,12 @@ model_name: model_eta_0.01_0.01.model
 2. gamma = 1  # alias min_split_loss
 3. min_child_weight = 10  # 可以简单理解为落到叶子结点的最少样本个数。
 4. max_delta_step 
+5. num_round = 3000
 . 删除scale_pos_weight参数
+
+
+01-17：
+经过上述参数的调和，过拟合已经缓和。经过3000次的迭代，训练误差为，测试误差为，
+网站提供测试集误差为2.35414，很接近训练集的测试误差。
+
+假如了error的观察，错误率一直保持在70%，说明计算出的概率很散，所以可以得到一个比较低的mlogloss

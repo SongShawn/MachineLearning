@@ -52,8 +52,7 @@ evallist = [(DTrain_X, 'train'), (DTest_X, 'Test')]
 num_round = 3000
 early_stop = 5
 
-etas = [0.01]
-# etas = [0.2]
+etas = [0.1]
 start = time.time()
 model_name = "../models/model_eta_0.3.model"
 bst = None
