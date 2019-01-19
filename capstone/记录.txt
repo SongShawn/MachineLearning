@@ -33,3 +33,44 @@ model_name: model_eta_0.01_0.01.model
 网站提供测试集误差为2.35414，很接近训练集的测试误差。
 
 假如了error的观察，错误率一直保持在70%，说明计算出的概率很散，所以可以得到一个比较低的mlogloss
+
+
+01-18：
+通过进一步解析Address字段，解析出道路编号，道路名称。对于路口则解析出两个道路名称，无道路编号。
+道路名称分布很散，大量道路名称只能够覆盖一个样本，或很少的样本，如下对RoadName1的统计
+NELLIE                      1
+JULIUS                      1
+SANRAMON                    1
+ROACH                       1
+HAVENS                      1
+名称为NELLIE的道路只有一个样本，RoadName2也会出现同样的情况。
+a = train_data["RoadName1"].value_counts()
+a[a<=43].sum()/a.sum() # 0.01727965139864443
+样本数小于43（中位数）的样本总和仅占总样本的1.7%，也就是说，一半的道路发生的案件总数仅占所有案件的1.7%
+
+print(a.max(), a.min(), a.mean(), a.median(), np.percentile(a, 25), np.percentile(a, 50), np.percentile(a, 75), np.percentile(a, 80))
+# output: 36744 1 446.82484725050915 43.0 12.0 43.0 189.0 272.2000000000003
+a[a>=272].sum()/a.sum() # 0.9059088567899322
+20%的道路发生的案件总数占了90%的比率。
+
+1. 先使用这些数据跑一边模型
+2. 将样本很少的道路名称归为一类。这个阈值怎么找那？？？？
+3. None怎么处理那？？？
+
+xgboost 内存泄露：
+num_round = 200+500+1000
+early_stop = 5
+
+eta = 0.1
+etas = [0.2]*200 + [0.1]*500 + [0.01]*1000
+start = time.time()
+filename = "model_etas_1700_0.2_0.1_0.01_subsample_0.5_no_earlystop"
+# param['eta'] = eta
+bst = xgb.train(param, DTrain_X, num_boost_round=num_round, 
+            evals = evallist, early_stopping_rounds=None,
+            xgb_model=None, learning_rates=etas)
+model_name = '../models/' + filename + '.model'
+bst.save_model(model_name)
+print('traning, eta: {}, best_score: {}'.format(eta, bst.best_score))
+
+print('CPU hist Trainig Time: %s seconds.' % (str(time.time() - start)))

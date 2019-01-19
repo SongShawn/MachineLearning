@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "d:/GitHub/MachineLearning/capstone/solutions/micro_training.py", line 63, in <module>
+    xgb_model=None, learning_rates=etas)
+  File "D:\Anaconda3\envs\gym\lib\site-packages\xgboost\training.py", line 216, in train
+    xgb_model=xgb_model, callbacks=callbacks)
+  File "D:\Anaconda3\envs\gym\lib\site-packages\xgboost\training.py", line 74, in _train_internal
+    bst.update(dtrain, i, obj)
+  File "D:\Anaconda3\envs\gym\lib\site-packages\xgboost\core.py", line 1045, in update
+    dtrain.handle))
+OSError: [WinError -529697949] Windows Error 0xe06d7363
