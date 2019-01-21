@@ -28,35 +28,35 @@ def extra_dates(train_data):
     return train_data
 
 def extra_address_for_suffix(train_data):
-    train_data['PositionType'] = None
+    train_data['RoadType'] = None
     cross_road = "CrossRoad" # 交叉路口，含有/的
 
     # 设置交叉路口
-    train_data.loc[train_data['Address'].str.contains('/'), 'PositionType'] = cross_road
+    train_data.loc[train_data['Address'].str.contains('/'), 'RoadType'] = cross_road
 
     # 查找缩写并设置
     for a in suffixs:
         train_data.loc[(train_data['Address'].str.contains('/') == False) 
-                    & (train_data['Address'].str.contains(' '+a+'$')), 'PositionType'] = a
+                    & (train_data['Address'].str.contains(' '+a+'$')), 'RoadType'] = a
         
     # 查找全称并设置
     for i,d in enumerate(suffix_names):
-        train_data.loc[(train_data['PositionType'].isna())
-                    & (train_data['Address'].str.contains(d, case=False)), 'PositionType'] = suffixs[i]
+        train_data.loc[(train_data['RoadType'].isna())
+                    & (train_data['Address'].str.contains(d, case=False)), 'RoadType'] = suffixs[i]
         
     # 无法解析的均设置为Unkown
-    train_data.loc[(train_data['PositionType'].isna()), 'PositionType'] = unkown_value
+    train_data.loc[(train_data['RoadType'].isna()), 'RoadType'] = unkown_value
 
     # 合并 HWY HY，合并 WY WAY
-    train_data.loc[train_data['PositionType'] == "HWY", "PositionType"] = "HY"
-    train_data.loc[train_data['PositionType'] == "WAY", "PositionType"] = "WY"
-    train_data.loc[train_data['PositionType'] == "TER", "PositionType"] = "TR"
+    train_data.loc[train_data['RoadType'] == "HWY", "RoadType"] = "HY"
+    train_data.loc[train_data['RoadType'] == "WAY", "RoadType"] = "WY"
+    train_data.loc[train_data['RoadType'] == "TER", "RoadType"] = "TR"
     return train_data
 
 def extra_address_for_infos(train_data):
     """
     从Address字段解析出道路编号，道路名称。
-    解析不出的，赋值为None
+    解析不出的，赋值为unkown_value
     """
     col_block = "RoadBlock"
     col_name1 = "RoadName1"
