@@ -116,3 +116,6 @@ dmypy.json
 .vscode/settings.json
 
 results/
+
+.idea/
+.vscode/
