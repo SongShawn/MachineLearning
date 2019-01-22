@@ -157,3 +157,18 @@ def _address_map(a):
         return a[0]
     else:
         return None
+
+
+def dataset_sample(train_data, frac=0.1, feature_name="Category"):
+    """
+    从数据集中按指定类别采样，如果某类别样本数*frac小于等于10，则进行全采样。
+    """
+    new_data = pd.DataFrame(columns=train_data.columns)
+    feature_values_cnt = train_data[feature_name].value_counts()
+    for name, cnt in feature_values_cnt.items():
+        if cnt*frac > 10:
+            new_data = new_data.append(train_data[train_data[feature_name]==name].sample(frac=frac), ignore_index=True)
+        else :
+            new_data = new_data.append(train_data[train_data[feature_name]==name], ignore_index=True)
+
+    return new_data.astype(train_data.dtypes.to_dict())
