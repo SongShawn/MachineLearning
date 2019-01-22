@@ -45,7 +45,6 @@ param['colsample_bytree'] = 0.8
 param['tree_method'] = 'hist'
 param['gamma'] = 2
 param['min_child_weight'] = 10
-param['max_delta_step'] = 2
 
 
 evallist = [(DTrain_X, 'train'), (DTest_X, 'Test')]

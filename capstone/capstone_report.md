@@ -208,17 +208,17 @@ Address字段分为几种特定的填写格式。
 - "max_depth": 8
 - "min_samples_split": 20
 - "max_features": 0.8
-其余参数均是缺省值，最终得到的测试集损失值为：
+其余参数均是缺省值，使用训练得到的模型对测试集进行预测并上传至Kaggle网站，得分为：
 
 XGBoost.XGBClassifier参数：
 - "learning_rate": 0.1
-- "n_estimators": 500
-- "max_depth": 8
+- "n_estimators": 200
+- "max_depth": 5
 - “tree_method”: hist
-- "colsample_bytree": 0.8
-- "gamma": 2
+- "colsample_bytree": 0.5
+- "gamma": 0.2
 - "subsapmle": 0.5
-其余参数均是缺省值，最终得到的测试集损失值为：
+其余参数均是缺省值，使用训练得到的模型对测试集进行预测并上传至Kaggle网站，得分为：
 
 在使用XGBoost过程中遇到了不少问题，并且由于时间比较紧迫加上对XGB的原理还没有摸透，因此只能用其他的办法绕开这些问题进行往下走，但是也消耗了很多的时间和精力。列举部分问题：（也不一定框架问题，可能是使用不当，在xgboost的官方论坛发了疑问并没有得到回复，毕业项目搞完下决心定位一下这些问题）
 1. 使用GPU算法时，训练得到模型无论是直接预测测试集还是保存加载后再使用，都会因此异常，怀疑是内存不足了。
@@ -230,7 +230,6 @@ XGBoost.XGBClassifier参数：
 首先无论是随机森林还是XGBoost，直接在全量训练集上进行交叉验证和网格搜索所需要的时间都是难以接受的，经过测试随着树个数的增加，一个模型的训练时间会达到几十分钟，因此直接使用完整数据集得到一次结果可能需要几天的时间。
 
 因此我们采用这种的方法，使用自己实现的`dataset_sample`函数从训练集中进行采样，采样结果尽量保证了如下两点数据集特征： 
-
 - 数据集中各类别的样本比例尽量保证一致。
 - 对于样本数极少的类别（如几十个样本）全量保留。 
 
@@ -251,11 +250,9 @@ XGBoost.XGBClassifier参数：
 1. 设置一组基础参数，`max_depth=6, n_estimators=200, criterion="entropy", min_samples_split=20, max_features=0.5, bootstrap=True`
 1. 每次只对一个参数进行5折网格搜索。已经找到的最优参数需要更新到基础参数中。
 
-经过6次的训练，得到6个最优的参数。但是对于随机森林模型max_depth和n_estimators两个参数是存在一定的关联性的，存在一个此消彼长的关系，因此需要单独对这两个参数进行一次5折的网格搜索。
+经过6次的训练，得到6个最优的参数。但是对于随机森林模型max_depth和n_estimators两个参数具有关联性，存在一个此消彼长的关系，因此需要单独对这两个参数进行一次5折的网格搜索。
 
-最后的最后，还需要在整个训练集上使用最优的参数值训练出最终的随机森林模型。
-
-在这种策略下，计算模型个数公式中的乘法便变成了加法(最后一个乘号不变)。仅仅需要训练`245`((7 * 5 + 2 + 4 + 6 + 2) * 150)个模型，大大缩短了训练时间。
+最后的最后，还需要在整个训练集上使用最优的参数值训练出最终的随机森林模型。使用该模型对测试集进行预测并上传至Kaggle网站，得分为：
 
 #### 3.3.2 XGBoost梯度提升树
 
@@ -270,15 +267,18 @@ XGBoost库提供了适配scikit-learn库的python接口，因此可以使用scik
 - min_child_weight: 4, 5, 6
 
 其中learning_rate和n_estimators存在强关联性，learning_rate越小则需要n_estimators越大。
-1. 基于基础参数，固定learning_rate为0.1，使用XGBBoost自带的cv函数结合early_stop找到合适的n_estimators。
-1. 得到合适的learning_rate和n_estimators后，使用scikit-learn的GridSearchCV接口微调其它参数。
+1. 设置一组基础参数，`max_depth=6, learning_rate=0.1, gamma=0.3, subsample=0.5, colsample_bytree=0.5, min_child_weight=5, n_estimators=1000`
+1. 基于基础参数，使用5折网格搜索找到最优的n_estimators值。
+1. 固定learning_rate和n_estimators后，使用scikit-learn的GridSearchCV接口逐个微调其他参数。
 1. 微调过程中如果发现目标参数的最优值为参数列表的上限值或者限制，则需要扩展参数列表继续微调该参数。
-1. 参数确定后，适当缩小learning_rate参数，使用已经得到最优参数组重复步骤(1)，找到最合适的n_estimators。
+
+经过多次5折网格搜索得到所有的最优参数后，需要进一步优化，缩小learning_rate到0.01，使用整个数据集结合early_stop进行cv训练，找到最优的n_estimators。
 
 ## 4 结果
 
 ### 4.1 模型评价与验证
 
+经过对两个模型的5折网格搜索发现，XGBoost的训练效率比随机森林慢很多，像章节3.2中训练的基础模型就需要将近一个小时，而此时的迭代次数还仅仅是200。
 ### 4.2 结果分析
 
 ## 5 结论
