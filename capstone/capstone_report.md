@@ -1,7 +1,63 @@
-# 旧金山罪案类型预测
+<div align="center">
+
+# 机器学习工程师纳米学位毕业项目
+## 旧金山罪案类型预测
 
 #### 宋潇宁
 #### 2019年1月31号
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## 1 定义
 
@@ -92,11 +148,11 @@ Address字段分为几种特定的填写格式。
 ### 2.2 数据可视化
 图3以柱状图的方式清晰的展示出训练集各种案件类型数量的分布图，数据集很不平衡，大量的样本集中在少量的几种案件类型上。像"TREA"仅仅只有6个样本，我也完全没搞清楚这到底是什么罪行。由于我们的训练集和测试集是隔周抽取的，如果某种案件类型存在明显的时间周期特性，很有可能会大大提高模型预测的难度。
 <div align="center">
-<img src="images/Category1.jpg" width=800 height=500 alt="整体案件类型数量分布图" align=center /><br>图3：整体案件类型数量分布图
+<img src="images/Category1.jpg" width=800 height=550 alt="整体案件类型数量分布图" align=center /><br>图3：整体案件类型数量分布图
 </div>
 
 <div align="center">
-<img src="images/hour_5_categories.jpg" width=1000 height=600 alt="凌晨五点案件类型数量分布图" align=center /><br>图4：凌晨五点案件类型数量分布图
+<img src="images/hour_5_categories.jpg" width=1000 height=650 alt="凌晨五点案件类型数量分布图" align=center /><br>图4：凌晨五点案件类型数量分布图
 </div>
 
 由于案件类型很不平衡，我们以比较大的粒度划分数据集后得到数据集案件数量分布变化可能不会太大。比如图4所绘制的是凌晨五点案件类型数量的分布图，和图3的分布基本一致。数据的不平衡还带来了另一个困惑，图5展示的是各种案件类型数量随着时间推移的分布图，我们可以看到大部分案件类型的数量在凌晨五点达到最低点，随着时间的后移数量逐步增加，在中午或者傍晚达到顶峰。而案件类型"DISORDERLY CONDUCT"的数量在凌晨五点达到了巅峰。这本来可以作为一个很好的区分点，但是图4已经展示了凌晨五点的分布图，由于数据集的不平衡，单单凌晨五点"DISORDERLY CONDUCT"数量激增这个特征起不到什么作用。因此我们需要更加细粒度的特征。
