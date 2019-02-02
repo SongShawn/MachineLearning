@@ -50,4 +50,11 @@
     链接：https://pan.baidu.com/s/1qz8jEL6kX1Io5RL6sLLFtQ 提取码：ocln
 
 
+## 代码运行时间
 
+运行环境信息：
+![df](./systeminfo.png)
+
+整个solution.ipynb跑下来可能需要几天时间，所以不建议本地跑一边
+
+百度云上保存了保存到本地的模型，下载后可以直接使用offline_model.ipynb文件跑一边，使用整个树预测整个测试集的话，大概需要5个小时。
