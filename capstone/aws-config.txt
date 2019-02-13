@@ -1,0 +1,31 @@
+
+安装Anaconda
+wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
+
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+
+
+jupyter notebook --generate-config
+
+
+映射端口
+ssh -i "aws_free_instance.pem" -L1234:localhost:8888 ec2-user@ec2-3-17-191-116.us-east-2.compute.amazonaws.com
+
+安装python包
+
+pip install kaggle
+pip install xgboost
+
+
+
+kaggle命令工具使用
+
+1. 安装
+pip install kaggle
+
+2. 配置
+将kaggle.json放到~/.kaggle目录下
+
+3. 下载竞赛数据
+kaggle competitions download -c sf-crime

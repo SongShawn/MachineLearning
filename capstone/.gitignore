@@ -120,3 +120,6 @@ datasets/
 models/
 solutions/*.7z
 solutions/*.csv
+
+*.7z
+*.zip
