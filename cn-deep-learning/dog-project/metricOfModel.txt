@@ -1,0 +1,154 @@
+--------模型一：测试集准确度高于训练集和验证集
+
+model = Sequential()
+
+model.add(Conv2D(filters=16, kernel_size=2, activation='relu', input_shape=(224,224,3)))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(filters=32, kernel_size=2, activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(filters=64, kernel_size=2, activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(GlobalAveragePooling2D())
+model.add(Dense(133, activation='softmax'))
+          
+model.summary()
+
+
+Train on 6680 samples, validate on 835 samples
+Epoch 1/5
+Epoch 00000: val_loss improved from inf to 4.86958, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.8839 - acc: 0.0093 - val_loss: 4.8696 - val_acc: 0.0096
+Epoch 2/5
+Epoch 00001: val_loss improved from 4.86958 to 4.85650, saving model to saved_models/weights.best.from_scratch.hdf5
+9s - loss: 4.8679 - acc: 0.0106 - val_loss: 4.8565 - val_acc: 0.0156
+Epoch 3/5
+Epoch 00002: val_loss improved from 4.85650 to 4.82774, saving model to saved_models/weights.best.from_scratch.hdf5
+9s - loss: 4.8410 - acc: 0.0147 - val_loss: 4.8277 - val_acc: 0.0180
+Epoch 4/5
+
+
+Test accuracy: 3.1100%
+
+--------模型二：训练集和验证集准确度高于模型一，但是测试集准确度低于模型一
+
+model = Sequential()
+
+### TODO: 定义你的网络架构
+model.add(Conv2D(filters=16, kernel_size=3, activation='relu', input_shape=(224,224,3)))
+# model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(filters=32, kernel_size=2, activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(filters=64, kernel_size=2, activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(GlobalAveragePooling2D())
+model.add(Dense(133, activation='softmax'))
+          
+model.summary()
+
+Train on 6680 samples, validate on 835 samples
+Epoch 1/5
+Epoch 00000: val_loss improved from inf to 4.87104, saving model to saved_models/weights.best.from_scratch.hdf5
+17s - loss: 4.8839 - acc: 0.0081 - val_loss: 4.8710 - val_acc: 0.0108
+Epoch 2/5
+Epoch 00001: val_loss improved from 4.87104 to 4.85796, saving model to saved_models/weights.best.from_scratch.hdf5
+16s - loss: 4.8689 - acc: 0.0096 - val_loss: 4.8580 - val_acc: 0.0108
+Epoch 3/5
+Epoch 00002: val_loss improved from 4.85796 to 4.82951, saving model to saved_models/weights.best.from_scratch.hdf5
+16s - loss: 4.8430 - acc: 0.0139 - val_loss: 4.8295 - val_acc: 0.0192
+Epoch 4/5
+Epoch 00003: val_loss did not improve
+15s - loss: 4.8013 - acc: 0.0201 - val_loss: 4.8429 - val_acc: 0.0192
+Epoch 5/5
+Epoch 00004: val_loss improved from 4.82951 to 4.79023, saving model to saved_models/weights.best.from_scratch.hdf5
+16s - loss: 4.7710 - acc: 0.0204 - val_loss: 4.7902 - val_acc: 0.0228
+
+Test accuracy: 2.6316%
+
+
+-------模型三，再次翻倍卷积层的深度，并且在最后一个池化层后增加一个dropout(0.2)，epoch增加到20，效果明显优于模型一二。
+
+from keras.layers import Conv2D, MaxPooling2D, GlobalAveragePooling2D
+from keras.layers import Dropout, Flatten, Dense
+from keras.models import Sequential
+# from keras.utils import plot_model
+model = Sequential()
+
+### TODO: 定义你的网络架构
+model.add(Conv2D(filters=16, kernel_size=2, activation='relu', input_shape=(224,224,3)))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(filters=32, kernel_size=2, activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(filters=64, kernel_size=2, activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(filters=128, kernel_size=2, activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(GlobalAveragePooling2D())
+model.add(Dropout(0.2))
+model.add(Dense(133, activation='softmax'))
+          
+model.summary()
+# plot_model(model, show_shapes=True)
+
+Train on 6680 samples, validate on 835 samples
+Epoch 1/20
+Epoch 00000: val_loss improved from inf to 4.62143, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.6035 - acc: 0.0359 - val_loss: 4.6214 - val_acc: 0.0335
+Epoch 2/20
+Epoch 00001: val_loss improved from 4.62143 to 4.55830, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.5504 - acc: 0.0464 - val_loss: 4.5583 - val_acc: 0.0395
+Epoch 3/20
+Epoch 00002: val_loss improved from 4.55830 to 4.48796, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.4871 - acc: 0.0485 - val_loss: 4.4880 - val_acc: 0.0455
+Epoch 4/20
+Epoch 00003: val_loss improved from 4.48796 to 4.42316, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.4180 - acc: 0.0567 - val_loss: 4.4232 - val_acc: 0.0599
+Epoch 5/20
+Epoch 00004: val_loss improved from 4.42316 to 4.39894, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.3577 - acc: 0.0617 - val_loss: 4.3989 - val_acc: 0.0599
+Epoch 6/20
+Epoch 00005: val_loss did not improve
+10s - loss: 4.3107 - acc: 0.0657 - val_loss: 4.4971 - val_acc: 0.0611
+Epoch 7/20
+Epoch 00006: val_loss improved from 4.39894 to 4.28472, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.2738 - acc: 0.0686 - val_loss: 4.2847 - val_acc: 0.0635
+Epoch 8/20
+Epoch 00007: val_loss did not improve
+10s - loss: 4.2258 - acc: 0.0807 - val_loss: 4.3254 - val_acc: 0.0659
+Epoch 9/20
+Epoch 00008: val_loss improved from 4.28472 to 4.21892, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.1798 - acc: 0.0813 - val_loss: 4.2189 - val_acc: 0.0754
+Epoch 10/20
+Epoch 00009: val_loss did not improve
+10s - loss: 4.1443 - acc: 0.0871 - val_loss: 4.2734 - val_acc: 0.0623
+Epoch 11/20
+Epoch 00010: val_loss did not improve
+10s - loss: 4.1071 - acc: 0.0906 - val_loss: 4.2435 - val_acc: 0.0731
+Epoch 12/20
+Epoch 00011: val_loss did not improve
+10s - loss: 4.0747 - acc: 0.0904 - val_loss: 4.2678 - val_acc: 0.0695
+Epoch 13/20
+Epoch 00012: val_loss improved from 4.21892 to 4.20330, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.0421 - acc: 0.0933 - val_loss: 4.2033 - val_acc: 0.0838
+Epoch 14/20
+Epoch 00013: val_loss improved from 4.20330 to 4.09664, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 4.0000 - acc: 0.1033 - val_loss: 4.0966 - val_acc: 0.0934
+Epoch 15/20
+Epoch 00014: val_loss did not improve
+10s - loss: 3.9806 - acc: 0.1057 - val_loss: 4.2795 - val_acc: 0.0778
+Epoch 16/20
+Epoch 00015: val_loss did not improve
+10s - loss: 3.9566 - acc: 0.1088 - val_loss: 4.1113 - val_acc: 0.0850
+Epoch 17/20
+Epoch 00016: val_loss did not improve
+10s - loss: 3.9315 - acc: 0.1168 - val_loss: 4.1582 - val_acc: 0.0826
+Epoch 18/20
+Epoch 00017: val_loss improved from 4.09664 to 4.06695, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 3.8971 - acc: 0.1168 - val_loss: 4.0669 - val_acc: 0.1138
+Epoch 19/20
+Epoch 00018: val_loss improved from 4.06695 to 4.04769, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 3.8781 - acc: 0.1145 - val_loss: 4.0477 - val_acc: 0.0874
+Epoch 20/20
+Epoch 00019: val_loss improved from 4.04769 to 4.03653, saving model to saved_models/weights.best.from_scratch.hdf5
+10s - loss: 3.8565 - acc: 0.1196 - val_loss: 4.0365 - val_acc: 0.1030
+
+Test accuracy: 11.2440%

@@ -10,12 +10,18 @@ jupyter notebook --generate-config
 
 
 映射端口
-ssh -i "aws_free_instance.pem" -L1234:localhost:8888 ec2-user@ec2-3-17-191-116.us-east-2.compute.amazonaws.com
+ssh -i "aws_free_instance.pem" -L1234:localhost:8888 ec2-user@ec2-3-17-163-253.us-east-2.compute.amazonaws.com
 
 安装python包
 
+pip install ipython
+pip install notebook
+
 pip install kaggle
 pip install xgboost
+pip install pandas
+pip install sklearn
+pip pinstall matplotlib
 
 
 
